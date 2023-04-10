@@ -1,12 +1,13 @@
 package com.example.questifyit.repository.interfaces;
 
-import com.example.questifyit.domain.Quest;
 import com.example.questifyit.domain.User;
+import com.example.questifyit.domain.UserBadges;
 import com.example.questifyit.repository.interfaces.crud.ICreateUpdateRepository;
 import com.example.questifyit.repository.interfaces.crud.IReadOnlyRepository;
+import com.example.questifyit.utils.Pair;
 
 import java.util.UUID;
 
-public interface IQuestRepository extends ICreateUpdateRepository<UUID, Quest>, IReadOnlyRepository<UUID,Quest> ,IRepository<UUID, User>{
+public interface IUserBadgesRepository extends IReadOnlyRepository<Pair<UUID>, UserBadges>, ICreateUpdateRepository<Pair<UUID>,UserBadges>,IRepository<Pair<UUID>,UserBadges>{
 
 }
