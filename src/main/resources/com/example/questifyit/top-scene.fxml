@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Ellipse?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.questifyit.TopScene">
+   <children>
+      <ImageView fitHeight="422.0" fitWidth="626.0" layoutY="-3.0">
+         <image>
+            <Image url="@3474105.jpg" />
+         </image>
+      </ImageView>
+      <Ellipse fill="#f0f0f0" layoutX="79.0" layoutY="191.0" radiusX="138.0" radiusY="117.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+      <Ellipse fill="#f0f0f0" layoutX="230.0" layoutY="192.0" radiusX="100.0" radiusY="96.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+      <Ellipse fill="#f0f0f0" layoutX="400.0" layoutY="209.0" radiusX="107.0" radiusY="100.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+      <Ellipse fill="#f0f0f0" layoutX="519.0" layoutY="258.0" radiusX="107.0" radiusY="87.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+      <Ellipse fill="#f0f0f0" layoutX="526.0" layoutY="348.0" radiusX="100.0" radiusY="80.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+      <Ellipse fill="#f0f0f0" layoutX="246.0" layoutY="324.0" radiusX="274.0" radiusY="211.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+      <ListView layoutX="17.0" layoutY="134.0" prefHeight="269.0" prefWidth="443.0" />
+   </children>
+</AnchorPane>

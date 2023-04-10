@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.QuadCurve?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="rootPane" prefHeight="186.0" prefWidth="562.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.questifyit.RegisterViewController">
+    <children>
+      <ImageView fitHeight="440.0" fitWidth="804.0">
+         <image>
+            <Image url="@3586947.jpg" />
+         </image>
+      </ImageView>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="414.0" layoutX="-9.0" stroke="#f5f5f500" strokeType="INSIDE" width="213.0" />
+        <QuadCurve controlX="413.66668701171875" controlY="425.6666564941406" endX="268.33331298828125" endY="516.0" fill="WHITE" layoutX="161.0" layoutY="-349.0" startX="101.0" startY="398.66668701171875" stroke="TRANSPARENT" strokeType="INSIDE" />
+        <Ellipse fill="WHITE" layoutX="236.0" layoutY="122.0" radiusX="136.0" radiusY="102.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+        <QuadCurve controlX="407.66668701171875" controlY="305.3333435058594" endX="321.66668701171875" endY="438.0" fill="WHITE" layoutX="213.0" layoutY="-226.0" startX="11.0" startY="348.66668701171875" stroke="TRANSPARENT" strokeType="INSIDE" />
+        <QuadCurve controlX="172.0" controlY="476.6666564941406" endX="-110.33332061767578" endY="492.18927001953125" fill="WHITE" layoutX="222.0" layoutY="-70.0" startX="65.33331298828125" startY="417.33331298828125" stroke="TRANSPARENT" strokeType="INSIDE" />
+        <Ellipse fill="WHITE" layoutX="232.0" layoutY="276.0" radiusX="191.0" radiusY="108.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+        <QuadCurve controlX="265.33331298828125" controlY="511.6666564941406" endX="-61.33331298828125" endY="429.6666564941406" fill="WHITE" layoutX="270.0" layoutY="-159.0" startX="256.66668701171875" startY="390.33331298828125" stroke="TRANSPARENT" strokeType="INSIDE" />
+        <Ellipse fill="WHITE" layoutX="430.0" layoutY="203.0" radiusX="136.0" radiusY="59.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+        <Ellipse fill="WHITE" layoutX="246.0" layoutY="126.0" radiusX="136.0" radiusY="108.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+        <QuadCurve controlX="-28.0" controlY="-117.33332824707031" endX="50.0" fill="WHITE" layoutX="246.0" layoutY="64.0" startX="-92.0" startY="-23.333332061767578" stroke="TRANSPARENT" strokeType="INSIDE" />
+        <ImageView fitHeight="102.0" fitWidth="200.0" layoutX="54.0" layoutY="20.0">
+            <image>
+                <Image url="@questifyit-logo-removebg-preview-removebg-preview-removebg-preview-removebg-preview.png" />
+            </image>
+        </ImageView>
+        <Text layoutX="317.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register your account here and start your quest adventure!" wrappingWidth="174.62307739257812">
+            <font>
+                <Font name="Rockwell" size="20.0" />
+            </font>
+        </Text>
+        <HBox fx:id="emailHBox" layoutX="33.0" layoutY="147.0" prefHeight="40.0" prefWidth="241.0">
+            <children>
+                <ImageView fitHeight="41.0" fitWidth="35.0">
+                    <image>
+                        <Image url="@email-symbol-removebg-preview (1).png" />
+                    </image>
+                </ImageView>
+                <TextField fx:id="emailField" prefHeight="27.0" prefWidth="184.0" promptText="Email">
+                    <font>
+                        <Font name="Rockwell" size="12.0" />
+                    </font>
+                </TextField>
+            </children>
+        </HBox>
+        <HBox fx:id="passwordHBox" layoutX="33.0" layoutY="203.0" prefHeight="41.0" prefWidth="241.0">
+            <children>
+                <ImageView fitHeight="31.0" fitWidth="36.0">
+                    <image>
+                        <Image url="@password-symbol-removebg-preview.png" />
+                    </image>
+                </ImageView>
+                <PasswordField fx:id="passwordField" pickOnBounds="false" prefHeight="27.0" prefWidth="175.0" promptText="Password">
+                    <font>
+                        <Font name="Rockwell" size="12.0" />
+                    </font>
+                </PasswordField>
+            </children>
+        </HBox>
+      <HBox fx:id="confirmPasswordHBox" layoutX="33.0" layoutY="262.0" prefHeight="41.0" prefWidth="241.0">
+         <children>
+            <ImageView fitHeight="31.0" fitWidth="36.0">
+               <image>
+                  <Image url="@confirm-password-symbol-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <PasswordField fx:id="confirmPasswordField" pickOnBounds="false" prefHeight="27.0" prefWidth="177.0" promptText="Confirm password">
+               <font>
+                  <Font name="Rockwell" size="12.0" />
+               </font>
+            </PasswordField>
+         </children>
+      </HBox>
+      <Button fx:id="returnButton" layoutX="28.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#returnButtonPressed" prefHeight="41.0" prefWidth="59.0" text="Return " />
+      <Button fx:id="signUpButton" layoutX="68.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#signUpButtonClicked" prefHeight="41.0" prefWidth="191.0" text="Sign up">
+         <font>
+            <Font name="Rockwell" size="12.0" />
+         </font>
+      </Button>
+    </children>
+</AnchorPane>

@@ -1,0 +1,67 @@
+#passwordField{
+    -fx-text-box-border: transparent;
+    -fx-background-color: -fx-control-inner-background;
+    -fx-background-insets: 0;
+    -fx-padding: 1 3 1 3;
+}
+
+#passwordHBox{
+    -fx-border-color: black;
+    -fx-border-radius: 30px;
+}
+
+#confirmPasswordField{
+    -fx-text-box-border: transparent;
+    -fx-background-color: -fx-control-inner-background;
+    -fx-background-insets: 0;
+    -fx-padding: 1 3 1 3;
+}
+
+#confirmPasswordHBox{
+    -fx-border-color: black;
+    -fx-border-radius: 30px;
+}
+
+#emailField{
+    -fx-text-box-border: transparent;
+    -fx-background-color: -fx-control-inner-background;
+    -fx-background-insets: 0;
+    -fx-padding: 1 3 1 3;
+}
+
+#emailHBox{
+    -fx-border-color: black;
+    -fx-border-radius: 30px;
+}
+
+#signUpButton{
+    -fx-font-weight: bold;
+    -fx-background-color: black;
+    -fx-background-radius: 15px;
+    -fx-font-size: 16;
+    -fx-text-fill: #ffffff;
+}
+
+#returnButton{
+    -fx-font-weight: bold;
+    -fx-background-color: black;
+    -fx-background-radius: 15px;
+    -fx-font-size: 12;
+    -fx-text-fill: #ffffff;
+}
+
+#returnButton:hover{
+    -fx-font-weight: bold;
+    -fx-background-color: #c70ec7;
+    -fx-background-radius: 15px;
+    -fx-font-size: 12;
+    -fx-text-fill: black;
+}
+#signUpButton:hover{
+    -fx-font-weight: bold;
+    -fx-background-color: #c70ec7;
+    -fx-background-radius: 15px;
+    -fx-font-size: 16;
+    -fx-text-fill: black;
+}
+
