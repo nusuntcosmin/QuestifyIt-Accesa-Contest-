@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.Effect;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -39,9 +41,10 @@ public class MainViewController extends BaseController {
     @FXML
     private Button profileButton;
 
-
     @FXML
     private Button rankingButton;
+    @FXML
+    private Button createQuestButton;
 
     @FXML
     private Ellipse ellipse1;
@@ -74,12 +77,15 @@ public class MainViewController extends BaseController {
 
     @FXML
     private void initialize(){
+        Effect logoEffect = new ColorAdjust(0,0,0,0);
+        logoImage.setEffect(logoEffect);
         rootPane.setOpacity(0);
         initializeSlidingMenu();
         super.makeFadeIn(rootPane);
     }
 
     private void blurWidgets(){
+        createQuestButton.setEffect(new GaussianBlur());
         backgroundImage.setEffect(new GaussianBlur());
         logoImage.setEffect(new GaussianBlur());
         ellipse1.setEffect(new GaussianBlur());
@@ -91,6 +97,7 @@ public class MainViewController extends BaseController {
     }
 
     private void unblurWidgets(){
+        createQuestButton.setEffect(null);
         backgroundImage.setEffect(null);
         logoImage.setEffect(null);
         ellipse1.setEffect(null);
@@ -103,7 +110,6 @@ public class MainViewController extends BaseController {
     private void slideMenu(){
         slideTransition.setRate(1);
         slideTransition.play();
-
     }
 
     private void slideMenuBack(){
@@ -114,11 +120,14 @@ public class MainViewController extends BaseController {
     @FXML
     void menuButtonClicked() {
         if(isMenuShowed){
+
+
             unblurWidgets();
             isMenuShowed = false;
             slideMenuBack();
         }
         else{
+
             blurWidgets();
             isMenuShowed = true;
             slideMenu();
@@ -139,6 +148,10 @@ public class MainViewController extends BaseController {
 
     }
 
+    @FXML
+    void createQuestButtonPressed() {
+
+    }
     @FXML
     private void logOutButtonPressed() {
         makeFadeOutTransition(rootPane,"main-scene.fxml","sign-in-view.fxml");

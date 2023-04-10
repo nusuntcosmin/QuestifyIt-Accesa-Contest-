@@ -60,9 +60,9 @@
                      </effect>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="badgesButton1" layoutX="10.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#logOutButtonPressed" prefHeight="39.0" prefWidth="67.0">
+            <Button fx:id="logOutButton" layoutX="10.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#logOutButtonPressed" prefHeight="39.0" prefWidth="67.0">
                <graphic>
-                  <ImageView fx:id="logOutButton" fitHeight="49.0" fitWidth="55.0">
+                  <ImageView fitHeight="49.0" fitWidth="55.0">
                      <image>
                         <Image url="@logout-symbol-removebg-preview.png" />
                      </image>
@@ -95,6 +95,6 @@
          <content>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
          </content></ScrollPane>
-      <Button layoutX="468.0" layoutY="209.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="87.0" text="Create quest" />
+      <Button fx:id="createQuestButton" layoutX="468.0" layoutY="209.0" mnemonicParsing="false" onMouseClicked="#createQuestButtonPressed" prefHeight="30.0" prefWidth="87.0" text="Create quest" />
    </children>
 </AnchorPane>
