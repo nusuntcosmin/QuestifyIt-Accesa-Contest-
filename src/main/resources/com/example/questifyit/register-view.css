@@ -1,38 +1,41 @@
-#passwordField{
-    -fx-text-box-border: transparent;
-    -fx-background-color: -fx-control-inner-background;
-    -fx-background-insets: 0;
-    -fx-padding: 1 3 1 3;
-}
+
 
 #passwordHBox{
     -fx-border-color: black;
     -fx-border-radius: 30px;
 }
 
-#confirmPasswordField{
-    -fx-text-box-border: transparent;
-    -fx-background-color: -fx-control-inner-background;
-    -fx-background-insets: 0;
-    -fx-padding: 1 3 1 3;
-}
 
 #confirmPasswordHBox{
     -fx-border-color: black;
     -fx-border-radius: 30px;
 }
 
-#emailField{
-    -fx-text-box-border: transparent;
-    -fx-background-color: -fx-control-inner-background;
-    -fx-background-insets: 0;
-    -fx-padding: 1 3 1 3;
+#usernameHBox{
+    -fx-border-color: black;
+    -fx-border-radius: 30px;
 }
 
 #emailHBox{
     -fx-border-color: black;
     -fx-border-radius: 30px;
 }
+
+.text-field{
+    -fx-text-box-border: transparent;
+    -fx-background-color: -fx-control-inner-background;
+    -fx-background-insets: 0;
+    -fx-padding: 1 3 1 3;
+}
+
+.password-field{
+    -fx-text-box-border: transparent;
+    -fx-background-color: -fx-control-inner-background;
+    -fx-background-insets: 0;
+    -fx-padding: 1 3 1 3;
+}
+
+
 
 #signUpButton{
     -fx-font-weight: bold;

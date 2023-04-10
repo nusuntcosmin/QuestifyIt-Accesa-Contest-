@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -30,7 +31,7 @@
         <Ellipse fill="WHITE" layoutX="430.0" layoutY="203.0" radiusX="136.0" radiusY="59.0" stroke="TRANSPARENT" strokeType="INSIDE" />
         <Ellipse fill="WHITE" layoutX="246.0" layoutY="126.0" radiusX="136.0" radiusY="108.0" stroke="TRANSPARENT" strokeType="INSIDE" />
         <QuadCurve controlX="-28.0" controlY="-117.33332824707031" endX="50.0" fill="WHITE" layoutX="246.0" layoutY="64.0" startX="-92.0" startY="-23.333332061767578" stroke="TRANSPARENT" strokeType="INSIDE" />
-        <ImageView fitHeight="102.0" fitWidth="200.0" layoutX="54.0" layoutY="20.0">
+        <ImageView fitHeight="85.0" fitWidth="184.0" layoutX="54.0" layoutY="10.0">
             <image>
                 <Image url="@questifyit-logo-removebg-preview-removebg-preview-removebg-preview-removebg-preview.png" />
             </image>
@@ -40,21 +41,35 @@
                 <Font name="Rockwell" size="20.0" />
             </font>
         </Text>
-        <HBox fx:id="emailHBox" layoutX="33.0" layoutY="147.0" prefHeight="40.0" prefWidth="241.0">
+      <HBox fx:id="usernameHBox" layoutX="33.0" layoutY="112.0" prefHeight="40.0" prefWidth="241.0">
+         <children>
+            <ImageView fitHeight="33.0" fitWidth="34.0">
+               <image>
+                  <Image url="@52259-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="usernameField" prefHeight="27.0" prefWidth="176.0" promptText="Name">
+               <font>
+                  <Font name="Rockwell" size="12.0" />
+               </font>
+            </TextField>
+         </children>
+      </HBox>
+        <HBox fx:id="emailHBox" layoutX="33.0" layoutY="168.0" prefHeight="40.0" prefWidth="241.0">
             <children>
                 <ImageView fitHeight="41.0" fitWidth="35.0">
                     <image>
                         <Image url="@email-symbol-removebg-preview (1).png" />
                     </image>
                 </ImageView>
-                <TextField fx:id="emailField" prefHeight="27.0" prefWidth="184.0" promptText="Email">
+                <TextField fx:id="emailField" prefHeight="27.0" prefWidth="176.0" promptText="Email">
                     <font>
                         <Font name="Rockwell" size="12.0" />
                     </font>
                 </TextField>
             </children>
         </HBox>
-        <HBox fx:id="passwordHBox" layoutX="33.0" layoutY="203.0" prefHeight="41.0" prefWidth="241.0">
+        <HBox fx:id="passwordHBox" layoutX="33.0" layoutY="228.0" prefHeight="41.0" prefWidth="241.0">
             <children>
                 <ImageView fitHeight="31.0" fitWidth="36.0">
                     <image>
@@ -68,14 +83,14 @@
                 </PasswordField>
             </children>
         </HBox>
-      <HBox fx:id="confirmPasswordHBox" layoutX="33.0" layoutY="262.0" prefHeight="41.0" prefWidth="241.0">
+      <HBox fx:id="confirmPasswordHBox" layoutX="33.0" layoutY="291.0" prefHeight="41.0" prefWidth="241.0">
          <children>
             <ImageView fitHeight="31.0" fitWidth="36.0">
                <image>
                   <Image url="@confirm-password-symbol-removebg-preview.png" />
                </image>
             </ImageView>
-            <PasswordField fx:id="confirmPasswordField" pickOnBounds="false" prefHeight="27.0" prefWidth="177.0" promptText="Confirm password">
+            <PasswordField fx:id="confirmPasswordField" pickOnBounds="false" prefHeight="27.0" prefWidth="176.0" promptText="Confirm password">
                <font>
                   <Font name="Rockwell" size="12.0" />
                </font>
@@ -83,10 +98,15 @@
          </children>
       </HBox>
       <Button fx:id="returnButton" layoutX="28.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#returnButtonPressed" prefHeight="41.0" prefWidth="59.0" text="Return " />
-      <Button fx:id="signUpButton" layoutX="68.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#signUpButtonClicked" prefHeight="41.0" prefWidth="191.0" text="Sign up">
+      <Button fx:id="signUpButton" layoutX="51.0" layoutY="347.0" mnemonicParsing="false" onMouseClicked="#signUpButtonClicked" prefHeight="41.0" prefWidth="205.0" text="Sign up">
          <font>
             <Font name="Rockwell" size="12.0" />
          </font>
       </Button>
+      <Label fx:id="warnLabel" layoutX="280.0" layoutY="74.0" prefHeight="75.0" prefWidth="176.0" textFill="RED">
+         <font>
+            <Font name="Rockwell" size="13.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

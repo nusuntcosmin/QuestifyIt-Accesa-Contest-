@@ -10,7 +10,7 @@ import com.example.questifyit.repository.database.UserDbRepository;
 import com.example.questifyit.repository.interfaces.IBadgeRepository;
 import com.example.questifyit.repository.interfaces.IRepository;
 import com.example.questifyit.repository.interfaces.IUserRepository;
-import com.example.questifyit.utils.Pair;
+import com.example.questifyit.utils.data_structures.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -45,8 +45,9 @@ public class RepositoryDbFactory implements IRepositoryFactory {
     @Override
     public IRepository<UUID, User> getUserRepository() {
         log.traceEntry("Getting UserDbRepository instance");
-
-        return null;
+        UserDbRepository userDbRepository = new UserDbRepository(databaseProperties);
+        log.traceExit(userDbRepository);
+        return userDbRepository;
     }
 
     @Override

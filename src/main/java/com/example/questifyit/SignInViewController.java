@@ -3,10 +3,12 @@ package com.example.questifyit;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.TextAlignment;
 
 public class SignInViewController extends BaseController {
 
@@ -30,16 +32,25 @@ public class SignInViewController extends BaseController {
 
     @FXML
     private void signInButtonClicked(){
-        makeFadeOutTransition(rootPane,"sign-in-view.fxml","main-scene.fxml");
+        try {
+            setLoggedUser(service.loginUser(emailField.getText(),passwordField.getText()));
+            makeFadeOutTransition(rootPane,"sign-in-view.fxml","main-scene.fxml");
+        } catch (Exception e) {
+            warnLabel.setText(e.getMessage());
+        }
     }
     private void styleTextFields(){
         passwordHBox.setAlignment(Pos.CENTER);
         emailHBox.setAlignment(Pos.CENTER);
     }
 
+    @FXML
+    private Label warnLabel;
 
     @FXML
     public void initialize(){
+        warnLabel.setWrapText(true);
+        warnLabel.setTextAlignment(TextAlignment.CENTER);
         styleTextFields();
         rootPane.setOpacity(0);
         super.makeFadeIn(rootPane,1);
