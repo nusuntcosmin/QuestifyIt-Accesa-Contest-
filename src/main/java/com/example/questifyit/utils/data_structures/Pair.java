@@ -1,4 +1,4 @@
-package com.example.questifyit.utils;
+package com.example.questifyit.utils.data_structures;
 
 import java.util.Objects;
 
