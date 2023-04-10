@@ -1,6 +1,6 @@
 package com.example.questifyit.domain;
 
-import com.example.questifyit.utils.Pair;
+import com.example.questifyit.utils.data_structures.Pair;
 
 import java.util.UUID;
 

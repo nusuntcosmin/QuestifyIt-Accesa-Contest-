@@ -4,7 +4,7 @@ import com.example.questifyit.repository.database.jdbc_utils.JdbcUtils;
 import com.example.questifyit.repository.interfaces.IBadgeRepository;
 import com.example.questifyit.repository.interfaces.IUserBadgesRepository;
 import com.example.questifyit.repository.interfaces.IUserRepository;
-import com.example.questifyit.utils.Pair;
+import com.example.questifyit.utils.data_structures.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

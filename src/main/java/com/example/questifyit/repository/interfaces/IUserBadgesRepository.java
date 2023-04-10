@@ -1,10 +1,9 @@
 package com.example.questifyit.repository.interfaces;
 
-import com.example.questifyit.domain.User;
 import com.example.questifyit.domain.UserBadges;
 import com.example.questifyit.repository.interfaces.crud.ICreateUpdateRepository;
 import com.example.questifyit.repository.interfaces.crud.IReadOnlyRepository;
-import com.example.questifyit.utils.Pair;
+import com.example.questifyit.utils.data_structures.Pair;
 
 import java.util.UUID;
 

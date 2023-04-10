@@ -8,6 +8,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.questifyit.BadgesViewController">
    <children>
@@ -36,5 +38,10 @@
             <ColorAdjust brightness="1.0" />
          </effect>
       </ImageView>
+      <Text layoutX="122.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QuestifyIt badges" wrappingWidth="157.1788330078125">
+         <font>
+            <Font name="Rockwell" size="18.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
