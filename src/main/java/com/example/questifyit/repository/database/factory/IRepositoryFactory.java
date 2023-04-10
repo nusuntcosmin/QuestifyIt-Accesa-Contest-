@@ -5,7 +5,7 @@ import com.example.questifyit.domain.Quest;
 import com.example.questifyit.domain.User;
 import com.example.questifyit.domain.UserBadges;
 import com.example.questifyit.repository.interfaces.IRepository;
-import com.example.questifyit.utils.Pair;
+import com.example.questifyit.utils.data_structures.Pair;
 
 import java.util.UUID;
 
