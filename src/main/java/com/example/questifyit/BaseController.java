@@ -1,5 +1,7 @@
 package com.example.questifyit;
 
+import com.example.questifyit.domain.User;
+import com.example.questifyit.service.Service;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,7 +14,18 @@ import java.util.Objects;
 
 public class BaseController {
 
+    private static User loggedUser;
+
+    public void setLoggedUser(User loggedUser) {
+        BaseController.loggedUser = loggedUser;
+    }
+
+    protected User getLoggedUser() {
+        return loggedUser;
+    }
+
     private static Stage primaryStage;
+    protected static Service service;
     private Duration transitionDuration;
     private final FadeTransition fadeInTransition = new FadeTransition();
 
@@ -67,6 +80,10 @@ public class BaseController {
 
     public void setPrimaryStage(Stage primaryStage) {
         BaseController.primaryStage = primaryStage;
+    }
+
+    public static void setService(Service service) {
+        BaseController.service = service;
     }
 
     protected void changeScene(String fxmlFileName){
