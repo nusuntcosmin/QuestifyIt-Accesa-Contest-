@@ -11,6 +11,17 @@ public class Quest implements Entity<UUID> {
     private Timestamp date;
     private Boolean solved;
     private User creator;
+
+    private User solver;
+
+    public User getSolver() {
+        return solver;
+    }
+
+    public void setSolver(User solver) {
+        this.solver = solver;
+    }
+
     private Integer tokens;
 
     public void setSolved(Boolean solved) {
@@ -41,7 +52,9 @@ public class Quest implements Entity<UUID> {
         return tokens;
     }
 
-    public Quest(UUID questId, String description, String answer, Timestamp date, Boolean solved, User creator, Integer tokens) {
+
+
+    public Quest(UUID questId, String description, String answer, Timestamp date, Boolean solved, User creator, Integer tokens,User solver) {
         this.questId = questId;
         this.description = description;
         this.answer = answer;
@@ -49,6 +62,7 @@ public class Quest implements Entity<UUID> {
         this.solved = solved;
         this.creator = creator;
         this.tokens = tokens;
+        this.solver = solver;
     }
 
     @Override

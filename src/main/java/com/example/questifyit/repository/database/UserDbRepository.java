@@ -29,7 +29,7 @@ public class UserDbRepository implements IUserRepository {
     public void update(UUID entityID, User newEntity) {
         log.traceEntry("Updating user entity with id {} new user email {}, username {}",entityID,newEntity.getEmail(),newEntity.getName());
         Connection con = jdbcUtils.getConnection();
-        String UPDATE_USER_QUERRY = "UPDATE \"user\" SET name = ? , email = ? , hashedpassword = ? , salt = ?, tokens = ? , quests = ? WHERE id = ?";
+        String UPDATE_USER_QUERRY = "UPDATE \"user\" SET name = ? , email = ? , hashedpassword = ? , salt = ?, tokens = ? , quests = ? WHERE id = ? ";
         try(PreparedStatement preparedStatement = con.prepareStatement(UPDATE_USER_QUERRY)){
             preparedStatement.setObject(7,newEntity.getEntityID());
             preparedStatement.setString(1,newEntity.getName());
@@ -72,7 +72,7 @@ public class UserDbRepository implements IUserRepository {
         log.traceEntry("Selecting all the users ");
         Connection con = jdbcUtils.getConnection();
         List<User> userList = new ArrayList<>();
-        String FIND_ALL_USER_QUERRY = "SELECT * FROM \"user\"";
+        String FIND_ALL_USER_QUERRY = "SELECT * FROM \"user\" ORDER BY quests DESC, tokens DESC";
         try(PreparedStatement preparedStatement = con.prepareStatement(FIND_ALL_USER_QUERRY)) {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while(resultSet.next()){

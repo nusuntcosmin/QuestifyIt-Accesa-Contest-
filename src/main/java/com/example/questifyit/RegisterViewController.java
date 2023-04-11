@@ -52,7 +52,6 @@ public class RegisterViewController extends BaseController {
     private void initialize(){
         
         warnLabel.setWrapText(true);
-        warnLabel.setTextAlignment(TextAlignment.JUSTIFY);
         super.makeFadeIn(rootPane);
         rootPane.setOpacity(0);
         confirmPasswordHBox.setAlignment(Pos.CENTER);

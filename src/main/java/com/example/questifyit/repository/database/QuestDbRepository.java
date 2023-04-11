@@ -4,6 +4,7 @@ import com.example.questifyit.domain.Quest;
 import com.example.questifyit.domain.User;
 import com.example.questifyit.repository.database.jdbc_utils.JdbcUtils;
 import com.example.questifyit.repository.interfaces.IQuestRepository;
+import com.example.questifyit.repository.interfaces.IRepository;
 import com.example.questifyit.repository.interfaces.IUserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,20 +22,23 @@ public class QuestDbRepository implements IQuestRepository {
     private IUserRepository userRepository;
 
     private final Logger log = LogManager.getLogger();
-    public QuestDbRepository(Properties properties) {
+    public QuestDbRepository(IRepository<UUID, User> userRepository, Properties properties) {
         jdbcUtils = new JdbcUtils(properties);
+        this.userRepository = (IUserRepository) userRepository;
     }
 
     @Override
     public void update(UUID entityID, Quest newEntity) {
         log.traceEntry("Updating quest entity with id {} new quest status : is solved ->  {}, username {}",entityID,newEntity.getSolved());
         Connection con = jdbcUtils.getConnection();
-        String UPDATE_QUEST_QUERRY = "UPDATE quest SET solved = ? WHERE id = ?";
+        String UPDATE_QUEST_QUERRY = "UPDATE quest SET solved = ? , solveruid = ? WHERE id = ?";
         try(PreparedStatement preparedStatement = con.prepareStatement(UPDATE_QUEST_QUERRY)){
             preparedStatement.setBoolean(1,newEntity.getSolved());
-            preparedStatement.setObject(2,newEntity.getEntityID());
+            preparedStatement.setObject(3,newEntity.getEntityID());
+            preparedStatement.setObject(2,newEntity.getSolver().getEntityID());
 
             preparedStatement.executeUpdate();
+
         }catch (SQLException sqlException){
             log.error(sqlException);
         }
@@ -44,7 +48,7 @@ public class QuestDbRepository implements IQuestRepository {
     public void add(Quest entityToAdd) {
         log.traceEntry("Saving Quest entity {}",entityToAdd);
         Connection con = jdbcUtils.getConnection();
-        String ADD_QUEST_QUERRY = "INSERT INTO quest VALUES(?, ?, ?, ?, ?, ?, ?)";
+        String ADD_QUEST_QUERRY = "INSERT INTO quest VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         try(PreparedStatement preparedStatement = con.prepareStatement(ADD_QUEST_QUERRY)){
             preparedStatement.setObject(1,entityToAdd.getEntityID());
             preparedStatement.setString(2,entityToAdd.getDescription());
@@ -53,6 +57,10 @@ public class QuestDbRepository implements IQuestRepository {
             preparedStatement.setBoolean(5,entityToAdd.getSolved());
             preparedStatement.setObject(6,entityToAdd.getCreator().getEntityID());
             preparedStatement.setInt(7,entityToAdd.getTokens());
+            if(entityToAdd.getSolver() == null)
+                preparedStatement.setObject(8,null);
+            else
+                preparedStatement.setObject(8,entityToAdd.getSolver().getEntityID());
 
             preparedStatement.executeUpdate();
         }catch (SQLException sqlException){
@@ -65,7 +73,7 @@ public class QuestDbRepository implements IQuestRepository {
         log.traceEntry("Selecting all the quests");
         Connection con = jdbcUtils.getConnection();
         List<Quest> questsList = new ArrayList<>();
-        String FIND_ALL_QUESTS_QUERRY = "SELECT * FROM user";
+        String FIND_ALL_QUESTS_QUERRY = "SELECT * FROM quest ORDER by (solved is true) ASC, \"date\" DESC ";
         try(PreparedStatement preparedStatement = con.prepareStatement(FIND_ALL_QUESTS_QUERRY)) {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while(resultSet.next()){
@@ -76,8 +84,10 @@ public class QuestDbRepository implements IQuestRepository {
                     Boolean solved = resultSet.getBoolean("solved");
                     User creator = userRepository.findOne((UUID) resultSet.getObject("uid"));
                     Integer tokens = resultSet.getInt("tokens");
+                    UUID userSolverUUID = (UUID) resultSet.getObject("solveruid");
+                    User solver = userRepository.findOne(userSolverUUID);
 
-                    questsList.add(new Quest(id,description,answer,date,solved,creator,tokens));
+                    questsList.add(new Quest(id,description,answer,date,solved,creator,tokens,solver));
                 }
             }
         }catch (SQLException sqlException){
@@ -104,7 +114,9 @@ public class QuestDbRepository implements IQuestRepository {
                     User creator = userRepository.findOne((UUID) resultSet.getObject("uid"));
                     Integer tokens = resultSet.getInt("tokens");
 
-                    foundQuest = new Quest(id,description,answer,date,solved,creator,tokens);
+                    UUID userSolverUUID = (UUID) resultSet.getObject("solveruid");
+                    User solver = userRepository.findOne(userSolverUUID);
+                    foundQuest = new Quest(id,description,answer,date,solved,creator,tokens,solver);
                 }
             }
         }catch (SQLException sqlException){

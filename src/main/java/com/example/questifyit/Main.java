@@ -1,10 +1,7 @@
 package com.example.questifyit;
 
 import com.example.questifyit.repository.database.factory.RepositoryDbFactory;
-import com.example.questifyit.repository.interfaces.IBadgeRepository;
-import com.example.questifyit.repository.interfaces.IRepository;
-import com.example.questifyit.repository.interfaces.IUserBadgesRepository;
-import com.example.questifyit.repository.interfaces.IUserRepository;
+import com.example.questifyit.repository.interfaces.*;
 import com.example.questifyit.service.Service;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +28,8 @@ public class Main extends Application {
         IBadgeRepository badgeRepository = (IBadgeRepository) RepositoryDbFactory.getInstanceOfRepositoryDbFactory().getBadgeRepository();
         IUserRepository userRepository = (IUserRepository) RepositoryDbFactory.getInstanceOfRepositoryDbFactory().getUserRepository();
         IUserBadgesRepository userBadgesRepository =(IUserBadgesRepository) RepositoryDbFactory.getInstanceOfRepositoryDbFactory().getUserBadgesRepository();
-        Service service = new Service(userRepository,badgeRepository,null,userBadgesRepository);
+        IQuestRepository questRepository = (IQuestRepository) RepositoryDbFactory.getInstanceOfRepositoryDbFactory().getQuestRepository();
+        Service service = new Service(userRepository,badgeRepository,questRepository,userBadgesRepository);
         fxmlLoader.<BaseController>getController().setPrimaryStage(primaryStage);
         fxmlLoader.<BaseController>getController().setService(service);
         primaryStage.getIcons().add(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("questifyit-symbol-removebg-preview-removebg-preview-removebg-preview-removebg-preview.png"))));
