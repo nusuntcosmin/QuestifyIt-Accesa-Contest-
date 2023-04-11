@@ -46,3 +46,51 @@
 .scroll-pane {
     -fx-background-color: transparent;
 }
+
+#submitAnswerButton{
+    -fx-font-weight: bold;
+    -fx-background-color: black;
+    -fx-background-radius: 15px;
+    -fx-font-size: 10;
+    -fx-text-fill: #ffffff;
+}
+
+#submitAnswerButton:hover{
+    -fx-font-weight: bold;
+    -fx-background-color: #c70ec7;
+    -fx-background-radius: 15px;
+    -fx-font-size: 10;
+    -fx-text-fill: black;
+}
+
+#questsSwitchButton{
+     -fx-font-weight: bold;
+     -fx-background-color: black;
+     -fx-background-radius: 15px;
+     -fx-font-size: 10;
+     -fx-text-fill: #ffffff;
+ }
+
+#questsSwitchButton:hover{
+    -fx-font-weight: bold;
+    -fx-background-color: #c70ec7;
+    -fx-background-radius: 15px;
+    -fx-font-size: 10;
+    -fx-text-fill: black;
+}
+
+#solvedQuests{
+    -fx-font-weight: bold;
+    -fx-background-color: black;
+    -fx-background-radius: 15px;
+    -fx-font-size: 10;
+    -fx-text-fill: #ffffff;
+}
+
+#solvedQuests:hover{
+    -fx-font-weight: bold;
+    -fx-background-color: #c70ec7;
+    -fx-background-radius: 15px;
+    -fx-font-size: 10;
+    -fx-text-fill: black;
+}
