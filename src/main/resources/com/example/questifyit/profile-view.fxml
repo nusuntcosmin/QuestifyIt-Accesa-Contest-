@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.questifyit.ProfileViewController">
+   <children>
+      <ImageView fitHeight="458.0" fitWidth="733.0" layoutX="-9.0">
+         <image>
+            <Image url="@3586947.jpg" />
+         </image>
+      </ImageView>
+      <Ellipse fill="WHITE" layoutX="62.0" layoutY="353.0" radiusX="100.0" radiusY="80.0" stroke="WHITE" strokeType="INSIDE" />
+      <Ellipse fill="WHITE" layoutX="181.0" layoutY="307.0" radiusX="161.0" radiusY="151.0" stroke="WHITE" strokeType="INSIDE" />
+      <Ellipse fill="WHITE" layoutX="395.0" layoutY="316.0" radiusX="165.0" radiusY="134.0" stroke="WHITE" strokeType="INSIDE" />
+      <Ellipse fill="WHITE" layoutX="579.0" layoutY="347.0" radiusX="144.0" radiusY="91.0" stroke="WHITE" strokeType="INSIDE" />
+      <Ellipse fill="WHITE" layoutX="294.0" layoutY="170.0" radiusX="165.0" radiusY="155.0" stroke="WHITE" strokeType="INSIDE" />
+      <Ellipse fill="WHITE" layoutX="463.0" layoutY="200.0" radiusX="149.0" radiusY="179.0" stroke="WHITE" strokeType="INSIDE" />
+      <Ellipse fill="WHITE" layoutX="593.0" layoutY="247.0" radiusX="114.0" radiusY="91.0" stroke="WHITE" strokeType="INSIDE" />
+      <Button fx:id="returnButtonPressed" layoutX="36.0" layoutY="106.0" mnemonicParsing="false" onMouseClicked="#returnButtonPressed" text="Return" />
+      <TextField fx:id="nameTextField" layoutX="193.0" layoutY="94.0" />
+      <TextField fx:id="emailTextField" layoutX="395.0" layoutY="94.0" />
+      <PasswordField fx:id="passwordTextField" layoutX="193.0" layoutY="158.0" />
+      <PasswordField fx:id="confirmPasswordTextField" layoutX="395.0" layoutY="157.0" prefHeight="25.0" prefWidth="149.0" />
+      <Label layoutX="395.0" layoutY="66.0" text="Email">
+         <font>
+            <Font name="Rockwell" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="193.0" layoutY="66.0" text="Username">
+         <font>
+            <Font name="Rockwell" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="193.0" layoutY="132.0" text="Password">
+         <font>
+            <Font name="Rockwell" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="395.0" layoutY="132.0" prefHeight="16.0" prefWidth="128.0" text="Confirm password">
+         <font>
+            <Font name="Rockwell" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="updateButton" layoutX="415.0" layoutY="216.0" mnemonicParsing="false" onMouseClicked="#updateButtonPressed" prefHeight="25.0" prefWidth="128.0" text="Update" />
+      <Label fx:id="tokensLabel" layoutX="193.0" layoutY="208.0" prefHeight="25.0" prefWidth="149.0">
+         <font>
+            <Font name="Rockwell" size="14.0" />
+         </font></Label>
+      <Label fx:id="questsLabel" layoutX="193.0" layoutY="247.0" prefHeight="25.0" prefWidth="149.0">
+         <font>
+            <Font name="Rockwell" size="14.0" />
+         </font></Label>
+      <Label fx:id="warnLabel" layoutX="418.0" layoutY="272.0" prefHeight="43.0" prefWidth="175.0" textFill="RED">
+         <font>
+            <Font name="Rockwell" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="72.0" fitWidth="128.0" layoutX="14.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@questifyit-logo-removebg-preview-removebg-preview-removebg-preview-removebg-preview.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
