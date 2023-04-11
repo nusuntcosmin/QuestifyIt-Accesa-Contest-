@@ -5,6 +5,7 @@ import com.example.questifyit.domain.Quest;
 import com.example.questifyit.domain.User;
 import com.example.questifyit.domain.UserBadges;
 import com.example.questifyit.repository.database.BadgeDbRepository;
+import com.example.questifyit.repository.database.QuestDbRepository;
 import com.example.questifyit.repository.database.UserBadgesDbRepository;
 import com.example.questifyit.repository.database.UserDbRepository;
 import com.example.questifyit.repository.interfaces.IBadgeRepository;
@@ -62,7 +63,10 @@ public class RepositoryDbFactory implements IRepositoryFactory {
     @Override
     public IRepository<UUID, Quest> getQuestRepository() {
         log.traceEntry("Getting QuestDbRepository instance");
-        return null;
+        IRepository<UUID,Quest> questRepository = new QuestDbRepository(getUserRepository(),databaseProperties);
+        log.traceExit(questRepository);
+
+        return questRepository;
     }
 
     @Override
