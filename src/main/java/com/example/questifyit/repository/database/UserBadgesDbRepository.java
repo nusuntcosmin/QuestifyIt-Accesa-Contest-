@@ -1,4 +1,5 @@
 package com.example.questifyit.repository.database;
+import com.example.questifyit.domain.Badge;
 import com.example.questifyit.domain.UserBadges;
 import com.example.questifyit.repository.database.jdbc_utils.JdbcUtils;
 import com.example.questifyit.repository.interfaces.IBadgeRepository;
@@ -87,6 +88,30 @@ public class UserBadgesDbRepository implements IUserBadgesRepository {
 
     @Override
     public UserBadges findOne(Pair<UUID> entityID) {
-        return null;
+        log.traceEntry("Selecting a badge with id {}", entityID);
+        String FIND_ONE_USERSBADGE_QUERRY = "SELECT * FROM userbadges WHERE uid = ? AND bid = ?";
+        Connection con = jdbcUtils.getConnection();
+        UserBadges foundUsersBadge = null;
+        try(PreparedStatement preparedStatement = con.prepareStatement(FIND_ONE_USERSBADGE_QUERRY)) {
+            preparedStatement.setObject(1, entityID.getFirst());
+            preparedStatement.setObject(2, entityID.getSecond());
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while(resultSet.next()){
+
+                    UUID badgeId = (UUID) resultSet.getObject("bid");
+                    UUID userID = (UUID) resultSet.getObject("uid");
+                    Boolean achieved = resultSet.getBoolean("achieved");
+
+                    foundUsersBadge = new UserBadges(userRepository.findOne(userID),badgeRepository.findOne(badgeId),achieved);
+
+
+                }
+            }
+        }catch (SQLException sqlException){
+            log.error(sqlException);
+
+        }
+        log.traceExit(foundUsersBadge);
+        return foundUsersBadge;
     }
 }
