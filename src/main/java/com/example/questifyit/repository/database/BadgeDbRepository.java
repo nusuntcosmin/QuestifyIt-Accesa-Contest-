@@ -67,7 +67,6 @@ public class BadgeDbRepository implements IBadgeRepository {
 
                     foundBadge = new Badge(badgeId,badgeName,badgePhotoResourcePath);
 
-                    return foundBadge;
 
                 }
             }

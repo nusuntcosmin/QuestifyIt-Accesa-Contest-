@@ -1,6 +1,7 @@
 package com.example.questifyit.service;
 
 import com.example.questifyit.domain.Badge;
+import com.example.questifyit.domain.Quest;
 import com.example.questifyit.domain.User;
 import com.example.questifyit.domain.UserBadges;
 import com.example.questifyit.exceptions.NoMatchingPassword;
@@ -9,6 +10,8 @@ import com.example.questifyit.repository.interfaces.IBadgeRepository;
 import com.example.questifyit.repository.interfaces.IQuestRepository;
 import com.example.questifyit.repository.interfaces.IUserBadgesRepository;
 import com.example.questifyit.repository.interfaces.IUserRepository;
+import com.example.questifyit.utils.data_structures.Pair;
+import javafx.scene.layout.Pane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,13 +20,16 @@ import javax.crypto.spec.PBEKeySpec;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.KeySpec;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+
 public class Service {
+
     private IUserRepository userRepository;
     private IBadgeRepository badgeRepository;
     private IQuestRepository questRepository;
@@ -38,11 +44,164 @@ public class Service {
         this.userBadgesRepository = userBadgesRepository;
     }
 
+    public Iterable<User> findAllUsers(){
+        return userRepository.findAll();
+    }
+    public User findOneUser(UUID userID){
+        return userRepository.findOne(userID);
+    }
+    public Iterable<Quest> findAllQuests(){
+        return questRepository.findAll();
+    }
 
+    public void checkQuestAnswer(Quest quest ,User questSolver,String givenAnswer) throws Exception {
+        if(givenAnswer.isEmpty())
+            throw new Exception("Please complete the answer before submitting !");
+
+        if(!givenAnswer.equals(quest.getAnswer()))
+            throw new Exception("Wrong answer !");
+
+        int tokensReward = quest.getTokens();
+        questSolver.setNumberOfTokens(questSolver.getNumberOfTokens() + tokensReward);
+
+        questSolver.setNumberOfQuestsSolved(questSolver.getNumberOfQuestsSolved() + 1);
+        userRepository.update(questSolver.getEntityID(),questSolver);
+        quest.setSolver(questSolver);
+        quest.setSolved(true);
+        questRepository.update(quest.getEntityID(),quest);
+
+
+        updateQuestBadges(questSolver);
+        updateTokensBadges(questSolver);
+        updateTopBadges(questSolver);
+
+    }
+    private void updateQuestBadges(User rewardedUser){
+
+        if(rewardedUser.getNumberOfQuestsSolved()>= 1){
+            Pair<UUID> userBadgesID = new Pair<>(rewardedUser.getUserId(),UUID.fromString("48c9d823-f44a-4b90-8d14-7b9f4fa63ecc"));
+            UserBadges userBadges = userBadgesRepository.findOne(userBadgesID);
+            if(userBadges.getAchieved().equals(false)) {
+                userBadges.setAchieved(true);
+                userBadgesRepository.update(userBadgesID, userBadges);
+            }
+        }
+        if(rewardedUser.getNumberOfQuestsSolved()>= 10){
+            Pair<UUID> userBadgesID = new Pair<>(rewardedUser.getUserId(),UUID.fromString("9173299b-dadd-4c6c-9d4b-5fdc1a9a230d"));
+            UserBadges userBadges = userBadgesRepository.findOne(userBadgesID);
+            if(userBadges.getAchieved().equals(false)) {
+                userBadges.setAchieved(true);
+                userBadgesRepository.update(userBadgesID, userBadges);
+            }
+        }
+    }
+    private void updateTokensBadges(User rewardedUser){
+        if(rewardedUser.getNumberOfTokens() >= 100){
+            Pair<UUID> userBadgesID = new Pair<>(rewardedUser.getUserId(),UUID.fromString("b7d44af1-9b46-4692-a50f-1d7381d9794f"));
+            UserBadges userBadges = userBadgesRepository.findOne(userBadgesID);
+            if(userBadges.getAchieved().equals(false)) {
+                userBadges.setAchieved(true);
+                userBadgesRepository.update(userBadgesID, userBadges);
+            }
+        }
+
+        if(rewardedUser.getNumberOfTokens() >= 500){
+            Pair<UUID> userBadgesID = new Pair<>(rewardedUser.getUserId(),UUID.fromString("301acbcb-6187-4549-adbc-6c97a5dd5a21"));
+            UserBadges userBadges = userBadgesRepository.findOne(userBadgesID);
+            if(userBadges.getAchieved().equals(false)) {
+                userBadges.setAchieved(true);
+                userBadgesRepository.update(userBadgesID, userBadges);
+            }
+        }
+
+        if(rewardedUser.getNumberOfTokens() >= 1000){
+            Pair<UUID> userBadgesID = new Pair<>(rewardedUser.getUserId(),UUID.fromString("3706565d-1964-4245-acfe-3b6dd4a4541f"));
+            UserBadges userBadges = userBadgesRepository.findOne(userBadgesID);
+            if(userBadges.getAchieved().equals(false)) {
+                userBadges.setAchieved(true);
+                userBadgesRepository.update(userBadgesID, userBadges);
+            }
+        }
+    }
+
+    private void updateTopBadges(User rewardedUser){
+        ArrayList<User> userArrayList = (ArrayList<User>) findAllUsers();
+        if(!userArrayList.isEmpty() && userArrayList.get(0).equals(rewardedUser)){
+            Pair<UUID> userBadgesID = new Pair<>(rewardedUser.getUserId(),UUID.fromString("d2a6d5d8-3a71-4b38-a2e6-f072d490db07"));
+            UserBadges userBadges = userBadgesRepository.findOne(userBadgesID);
+            if(userBadges.getAchieved().equals(false)) {
+                userBadges.setAchieved(true);
+                userBadgesRepository.update(userBadgesID, userBadges);
+            }
+        }
+    }
+
+    public void addQuest(String description, String answer, User creator, String stringNrOftokens) throws Exception {
+        if(description.isEmpty() || answer.isEmpty() || stringNrOftokens.isEmpty())
+            throw new Exception("Please complete all fields !");
+
+        int tokens;
+
+        try{
+            tokens = Integer.parseInt(stringNrOftokens);
+        }catch (Exception ex){
+            throw new Exception("Invalid number of tokens!");
+        }
+
+        if(tokens <= 0)
+            throw new Exception("Reward cannot be negative or zero!");
+        if(tokens > creator.getNumberOfTokens())
+            throw new Exception("Insufficient funds !");
+
+        questRepository.add(new Quest(UUID.randomUUID(),description,answer, new Timestamp(System.currentTimeMillis()), false,creator,tokens,null));
+        creator.setNumberOfTokens(creator.getNumberOfTokens() - tokens);
+        userRepository.update(creator.getEntityID(),creator);
+    }
+
+    public void updateUser(UUID userID, String name, String email, String password, String confirmPassword) throws Exception {
+        User userToUpdate = userRepository.findOne(userID);
+
+        if((!password.isEmpty() && confirmPassword.isEmpty()) || (password.isEmpty() && !confirmPassword.isEmpty()))
+            throw new NoMatchingPassword("Please complete all passwords fields");
+
+        if(!password.equals(confirmPassword))
+            throw new NoMatchingPassword("Passwords do not match");
+
+        if(!password.isEmpty()){
+            String salt = generatePasswordSalt();
+            userToUpdate.setHashedPassword(hashPassword(password,salt));
+        }
+
+        if(!email.isEmpty()){
+            checkEmailValidity(email);
+            userToUpdate.setEmail(email);
+        }
+
+        if(!name.isEmpty()){
+            checkNameValidity(name);
+            userToUpdate.setName(name);
+        }
+
+        userRepository.update(userID,userToUpdate);
+
+    }
+
+    public Iterable<Quest> findAllSolvedQuestsForUser(UUID userID){
+        List<Quest> listQuest =  ((ArrayList<Quest>) questRepository.findAll()).
+                stream().
+                    filter(quest -> {
+                        if(quest.getSolved().equals(true))
+                            if(quest.getSolver().getUserId().equals(userID))
+                                return true;
+                        return false;
+                    }).
+                        toList();
+
+        return listQuest;
+    }
     public Iterable<Badge> findAllBadge() {
         return badgeRepository.findAll();
     }
-
 
     /*
     //
@@ -165,6 +324,21 @@ public class Service {
                         findAny().
                             orElseThrow(() -> new NoValidEmail("We could not find an account with this email"));
 
+    }
+
+    public Iterable<Quest> getQuestsForUser(UUID loggedUserID){
+        List<Quest> listQuest =  ((ArrayList<Quest>) questRepository.findAll()).
+                stream().
+                    filter(quest -> quest.getCreator().getUserId().equals(loggedUserID)).
+                        toList();
+        return listQuest;
+    }
+    public Iterable<Quest> getOtherUsersQuests(UUID loggedUserID){
+        List<Quest> listQuest =  ((ArrayList<Quest>) questRepository.findAll()).
+                stream().
+                    filter(quest -> !quest.getCreator().getUserId().equals(loggedUserID)).
+                        toList();
+        return listQuest;
     }
 
     /*

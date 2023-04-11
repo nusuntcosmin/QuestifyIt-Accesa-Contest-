@@ -29,6 +29,7 @@ public class BadgesViewController extends BaseController {
     @FXML
     private void initialize(){
         mainScrollPane.setFitToWidth(true);
+        scrollFlowPane.setMaxWidth(390);
         mainScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         rootPane.setOpacity(0);
         makeFadeIn(rootPane,1);
