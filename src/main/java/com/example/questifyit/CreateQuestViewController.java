@@ -1,22 +1,14 @@
 package com.example.questifyit;
 
-import com.example.questifyit.domain.Quest;
-import com.example.questifyit.domain.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 
-import java.util.ArrayList;
-import java.util.Queue;
-
-public class CreateQuestViewController extends BaseController{
+public class CreateQuestViewController extends BaseController {
 
     @FXML
     private TextField answerTextField;

@@ -6,12 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 public class TopRankingSceneController extends BaseController {
 
@@ -36,10 +32,27 @@ public class TopRankingSceneController extends BaseController {
         reloadTopList();
     }
 
-    private void reloadTopList(){
+    private void reloadTopList() {
         ArrayList<User> userArrayList = (ArrayList<User>) service.findAllUsers();
-        ArrayList<String> userStringArrayList= userArrayList.stream().map(User::toString).collect(Collectors.toCollection(ArrayList::new));
-        usersListView.getItems().setAll(userStringArrayList);
+        ArrayList<String> userStringArrayList = userArrayList.stream().map(User::toString).collect(Collectors.toCollection(ArrayList::new));
 
+        for (int i = 0; i < userStringArrayList.size(); ++i) {
+            String prefix = "";
+            switch ((i + 1) % 10) {
+                case 1:
+                    prefix = "st. ";
+                    break;
+                case 2:
+                    prefix = "nd. ";
+                    break;
+                case 3:
+                    prefix = "rd.";
+                    break;
+                default:
+                    prefix = "th. ";
+            }
+            userStringArrayList.set(i, (i + 1) + prefix + userStringArrayList.get(i));
+        }
+        usersListView.getItems().setAll(userStringArrayList);
     }
 }

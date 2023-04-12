@@ -26,9 +26,6 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.util.Duration;
 
-import java.util.ArrayList;
-import java.util.stream.Collectors;
-
 public class MainViewController extends BaseController {
 
     private static boolean isMenuShowed;
