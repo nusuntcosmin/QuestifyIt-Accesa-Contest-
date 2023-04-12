@@ -29,7 +29,7 @@ public class BadgesViewController extends BaseController {
     @FXML
     private void initialize(){
         mainScrollPane.setFitToWidth(true);
-        scrollFlowPane.setMaxWidth(390);
+        scrollFlowPane.setMaxWidth(430);
         mainScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         rootPane.setOpacity(0);
         makeFadeIn(rootPane,1);
@@ -38,9 +38,9 @@ public class BadgesViewController extends BaseController {
     }
 
     private void addBadges(){
-        for(UserBadges userBadge : service.getBadgesForUser(getLoggedUser().getUserId())){
+        for(UserBadges userBadge : BaseController.service.getBadgesForUser(getLoggedUser().getUserId())){
             VBox imageVbox = new VBox();
-            Badge badge = service.findOneBadge(userBadge.getBadge().getBadgeId());
+            Badge badge = BaseController.service.findOneBadge(userBadge.getBadge().getBadgeId());
             imageVbox.setAlignment(Pos.CENTER);
             Text textForBadge = new Text(badge.getBadgeName());
             textForBadge.setFont(Font.font("Rockwell",13));
@@ -57,7 +57,7 @@ public class BadgesViewController extends BaseController {
 
 
             badgetoAdd.setFitHeight(130);
-            badgetoAdd.setFitWidth(130);
+            badgetoAdd.setFitWidth(140);
             imageVbox.setMaxWidth(140);
             imageVbox.setMaxHeight(140);
             imageVbox.getChildren().add(badgetoAdd);
@@ -65,30 +65,6 @@ public class BadgesViewController extends BaseController {
 
             scrollFlowPane.getChildren().add(imageVbox);
         }
-        /*
-        for(Badge badge : service.findAllBadge()){
-            VBox imageVbox = new VBox();
-            imageVbox.setAlignment(Pos.CENTER);
-            Text textForBadge = new Text(badge.getBadgeName());
-            textForBadge.setFont(Font.font(14));
-
-
-            ImageView badgetoAdd = new ImageView(Objects.requireNonNull(
-                    getClass().
-                            getResource(badge.getBadgePhotoResourcePath())).toString());
-
-
-            badgetoAdd.setFitHeight(130);
-            badgetoAdd.setFitWidth(130);
-            imageVbox.setMaxWidth(140);
-            imageVbox.setMaxHeight(140);
-            imageVbox.getChildren().add(badgetoAdd);
-            imageVbox.getChildren().add(textForBadge);
-
-            scrollFlowPane.getChildren().add(imageVbox);
-        }
-
-         */
 
     }
     @FXML
